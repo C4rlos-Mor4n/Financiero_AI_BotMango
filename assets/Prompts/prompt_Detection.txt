@@ -1,0 +1,56 @@
+GASTOS="
+Cuándo utilizarlo:
+Usa esta etiqueta cuando el usuario menciona que ha realizado una compra, pago, o cualquier tipo de transacción que implique un desembolso de dinero, aunque no use las palabras "gastar" o "comprar". La IA debe ser capaz de reconocer cuando el usuario describe una acción que implica un gasto, incluso si es implícito o está en un contexto cotidiano, como mencionar el consumo de un producto con un costo asociado.
+
+Ejemplos de frases clave:
+
+'Hoy comí una galleta que costó 50 centavos.'
+'Me tomé un café que valió 50 pesos.'
+'Pagué la cuenta del teléfono.'
+'Ayer compré un libro.'
+'Acabo de gastar algo de dinero en la tienda.'
+
+Indicadores principales:
+
+Mención de un monto de dinero, explícito o implícito, junto con un objeto, producto, o servicio.
+Descripción de una acción que indica un intercambio económico, como comprar, pagar, adquirir, etc., incluso sin mencionar estas palabras explícitamente.
+Referencia a una transacción reciente o pasada, con o sin detalles de la cantidad. "
+
+RESUMEN="
+
+Cuándo utilizarlo:
+Usa esta etiqueta cuando el usuario solicita un informe, balance o resumen de sus gastos en un período determinado. La IA debe poder identificar solicitudes de información acumulada sobre los gastos realizados, tanto en términos generales como en un intervalo específico de tiempo.
+
+Ejemplos de frases clave:
+
+'¿Cuánto he gastado en total esta semana?'
+'Quiero ver un resumen de mis gastos del mes.'
+'Muéstrame mis gastos acumulados.'
+'¿Qué cantidad he gastado en comida este mes?'
+'Necesito un resumen de lo que he gastado hoy.'
+
+Indicadores principales:
+
+Mención de un período de tiempo definido (hoy, esta semana, este mes, etc.).
+Uso de palabras clave como "resumen", "balance", "acumulado", "total", o frases relacionadas con la acumulación de gastos.
+Solicitud de un informe o revisión de los gastos registrados en un lapso específico. "
+
+NO_DETECTADO="
+
+Cuándo utilizarlo:
+Usa esta etiqueta cuando la intención del usuario no se pueda clasificar claramente como GASTOS o RESUMEN. También se aplica si el usuario hace preguntas sobre cómo utilizar la aplicación, cómo registrar un gasto, o si la solicitud es demasiado general o ambigua.
+
+Ejemplos de frases clave:
+
+'¿Cómo funciona esta aplicación?'
+'No entiendo cómo registrar mis gastos.'
+'¿Qué opciones tengo disponibles?'
+'Explícame cómo uso esto.'
+'¿Qué puedo hacer aquí?'
+'Quiero ver mis ultimos movimientos.'
+
+Indicadores principales:
+
+Preguntas generales sobre el uso del sistema o sus funciones, o ver los ultimos movimientos.
+Expresiones de incertidumbre o necesidad de orientación sobre cómo proceder.
+Intenciones no relacionadas con la gestión o consulta de gastos específicos."
