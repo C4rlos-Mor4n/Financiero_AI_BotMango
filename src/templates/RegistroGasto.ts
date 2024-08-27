@@ -3,7 +3,7 @@ import AiServices from "../services/AiServices";
 import path from "path";
 import fs from "fs";
 import SheetManager from "../services/SheetManager";
-import { mongoAdapter } from "~/services/db/MongoAdapter";
+import { mongoAdapter } from "../services/db/MongoAdapter";
 
 const pathPrompt = path.join(
   process.cwd(),

@@ -5,7 +5,7 @@ import { ResumenGastos } from "./ResumenGastos";
 import { EVENTS } from "@builderbot/bot";
 import path from "path";
 import fs from "fs";
-import SheetManager from "~/services/SheetManager";
+import SheetManager from "../services/SheetManager";
 
 const pathPrompt = path.join(process.cwd(), "assets/Prompts", "prompt_faq.txt");
 const prompt = fs.readFileSync(pathPrompt, "utf8");

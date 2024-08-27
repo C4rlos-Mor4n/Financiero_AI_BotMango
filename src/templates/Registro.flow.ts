@@ -1,7 +1,7 @@
 import { addKeyword, EVENTS } from "@builderbot/bot";
 import { MetaProvider as Provider } from "@builderbot/provider-meta";
-import { mongoAdapter } from "~/services/db/MongoAdapter";
-import SheetManager from "~/services/SheetManager";
+import { mongoAdapter } from "../services/db/MongoAdapter";
+import SheetManager from "../services/SheetManager";
 
 export const Registroflow = addKeyword<Provider>(EVENTS.ACTION)
   .addAction(async (ctx, { provider }) => {

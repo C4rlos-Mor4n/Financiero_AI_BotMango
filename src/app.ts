@@ -10,11 +10,11 @@ import { config } from "./config";
 import Queue from "queue-promise";
 import fs from "fs";
 
-// const chatwoot = new ChatwootClass({
-//   account: config.CHATWOOT_ACCOUNT_ID,
-//   token: config.CHATWOOT_TOKEN,
-//   endpoint: config.CHATWOOT_ENDPOINT,
-// });
+const chatwoot = new ChatwootClass({
+  account: config.CHATWOOT_ACCOUNT_ID,
+  token: config.CHATWOOT_TOKEN,
+  endpoint: config.CHATWOOT_ENDPOINT,
+});
 
 const queue = new Queue({
   concurrent: 1,
@@ -70,71 +70,71 @@ const main = async () => {
     })
   );
 
-  // provider.on("message", (payload) => {
-  //   queue.enqueue(async () => {
-  //     try {
-  //       const attachment = [];
+  provider.on("message", (payload) => {
+    queue.enqueue(async () => {
+      try {
+        const attachment = [];
 
-  //       if (payload?.body.includes("_event_") && payload?.url) {
-  //         const { filePath } = await downloadFile(payload.url, config.jwtToken);
-  //         attachment.push(filePath);
-  //         setTimeout(async () => {
-  //           fs.unlinkSync(filePath);
-  //         }, 1000 * 60 * 5);
-  //       }
+        if (payload?.body.includes("_event_") && payload?.url) {
+          const { filePath } = await downloadFile(payload.url, config.jwtToken);
+          attachment.push(filePath);
+          setTimeout(async () => {
+            fs.unlinkSync(filePath);
+          }, 1000 * 60 * 5);
+        }
 
-  //       await handlerMessage(
-  //         {
-  //           phone: payload.from,
-  //           name: payload.pushName,
-  //           message: payload?.body.includes("_event_")
-  //             ? "Archivo adjunto"
-  //             : payload.body,
-  //           attachment,
-  //           mode: "incoming",
-  //         },
-  //         chatwoot
-  //       );
-  //     } catch (err) {
-  //       console.log("ERROR", err);
-  //     }
-  //   });
-  // });
+        await handlerMessage(
+          {
+            phone: payload.from,
+            name: payload.pushName,
+            message: payload?.body.includes("_event_")
+              ? "Archivo adjunto"
+              : payload.body,
+            attachment,
+            mode: "incoming",
+          },
+          chatwoot
+        );
+      } catch (err) {
+        console.log("ERROR", err);
+      }
+    });
+  });
 
-  // bot.on("send_message", (payload) => {
-  //   queue.enqueue(async () => {
-  //     const attachment = [];
+  bot.on("send_message", (payload) => {
+    queue.enqueue(async () => {
+      const attachment = [];
 
-  //     if (payload.options?.media) {
-  //       if (
-  //         payload.options.media.includes("http") ||
-  //         payload.options.media.includes("https")
-  //       ) {
-  //         const { filePath } = await downloadFile(payload.options.media);
-  //         attachment.push(filePath);
-  //         setTimeout(async () => {
-  //           fs.unlinkSync(filePath);
-  //         }, 1000 * 60 * 5);
-  //       }
+      if (payload.options?.media) {
+        if (
+          payload.options.media.includes("http") ||
+          payload.options.media.includes("https")
+        ) {
+          const { filePath } = await downloadFile(payload.options.media);
+          attachment.push(filePath);
+          setTimeout(async () => {
+            fs.unlinkSync(filePath);
+          }, 1000 * 60 * 5);
+        }
 
-  //       attachment.push(payload.options.media);
-  //       setTimeout(async () => {
-  //         fs.unlinkSync(payload.options.media);
-  //       }, 1000 * 60 * 5);
-  //     }
+        attachment.push(payload.options.media);
+        setTimeout(async () => {
+          fs.unlinkSync(payload.options.media);
+        }, 1000 * 60 * 5);
+      }
 
-  //     await handlerMessage(
-  //       {
-  //         phone: payload.from,
-  //         name: payload.from,
-  //         message: payload.answer,
-  //         mode: "outgoing",
-  //         attachment: attachment,
-  //       },
-  //       chatwoot
-  //     );
-  //   });
-  // });
+      await handlerMessage(
+        {
+          phone: payload.from,
+          name: payload.from,
+          message: payload.answer,
+          mode: "outgoing",
+          attachment: attachment,
+        },
+        chatwoot
+      );
+    });
+  });
 
   httpServer(+config.PORT);
 };
